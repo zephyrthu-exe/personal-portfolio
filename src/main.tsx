@@ -12,16 +12,19 @@ const milestones = [
 ];
 
 function Koala({ stage }: { stage: number }) {
- return <svg viewBox="0 0 100 100" aria-hidden="true" shapeRendering="crispEdges">
-  <path fill="#22221f" d="M27 75h46v5h9v20H18V80h9z"/><path fill="#a6a69e" d="M30 79h40v5h8v16H22V84h8z"/>
-  <path fill="#22221f" d="M5 20h7v-7h17v7h42v-7h17v7h7v25h-7v7H77v12h-7v8H30v-8h-7V52H12v-7H5z"/>
-  <path fill="#a6a69e" d="M10 23h5v-5h11v7h48v-7h11v5h5v19h-5v5H74v14h-7v6H33v-6h-7V47H15v-5h-5z"/>
-  <path fill="#f1f0e9" d="M15 25h9v14h-9zM76 25h9v14h-9z"/>
-  <path fill="#22221f" d="M31 38h6v7h-6zM63 38h6v7h-6zM44 43h12v4h4v12H40V47h4z"/>
-  {stage === 0 && <path fill="#f1f0e9" d="M31 49h6v4h-6zM63 49h6v4h-6z"/>}
-  {stage === 1 && <path fill="#bd3029" d="M44 24h12v4H44z"/>}
-  {stage === 2 && <path fill="#22221f" d="M26 35h15v2H26zM59 35h15v2H59zM41 37h18v2H41z"/>}
-  {stage === 3 && <><path fill="#22221f" d="M25 28h50v-5H25zM33 18h34v5H33zM72 27h3v14h-3z"/><path fill="#bd3029" d="M47 80h6v14h-6z"/></>}
+ return <svg viewBox="0 0 120 120" aria-hidden="true">
+  {/* A backpack sits behind the school koala's shoulders. */}
+  {stage === 1 && <><rect x="18" y="77" width="84" height="36" rx="14" fill="#22221f"/><path d="M27 83v24M93 83v24" fill="none" stroke="#bd3029" strokeWidth="5"/></>}
+  <path d="M24 112c1-22 13-32 36-32s35 10 36 32" fill="#f1f0e9" stroke="#22221f" strokeWidth="5"/>
+  <circle cx="27" cy="46" r="21" fill="#f1f0e9" stroke="#22221f" strokeWidth="5"/><circle cx="93" cy="46" r="21" fill="#f1f0e9" stroke="#22221f" strokeWidth="5"/>
+  <circle cx="27" cy="46" r="11" fill="#bd3029"/><circle cx="93" cy="46" r="11" fill="#bd3029"/>
+  <ellipse cx="60" cy="57" rx="37" ry="32" fill="#f1f0e9" stroke="#22221f" strokeWidth="5"/>
+  {stage === 2 ? <><path d="M38 46l10 3M72 49l10-3" stroke="#22221f" strokeWidth="4" strokeLinecap="round"/><ellipse cx="44" cy="56" rx="3.5" ry="5" fill="#22221f"/><ellipse cx="76" cy="56" rx="3.5" ry="5" fill="#22221f"/></> : <><ellipse cx="44" cy="54" rx="5" ry="6" fill="#22221f"/><ellipse cx="76" cy="54" rx="5" ry="6" fill="#22221f"/><circle cx="45.5" cy="52" r="1.5" fill="#f1f0e9"/><circle cx="77.5" cy="52" r="1.5" fill="#f1f0e9"/></>}
+  <ellipse cx="60" cy="63" rx="9" ry="12" fill="#22221f"/><ellipse cx="35" cy="65" rx="5" ry="3" fill="#bd3029"/><ellipse cx="85" cy="65" rx="5" ry="3" fill="#bd3029"/>
+  {stage !== 0 && <path d="M53 79q7 6 14 0" fill="none" stroke="#22221f" strokeWidth="2.5" strokeLinecap="round"/>}
+  {stage === 0 && <><circle cx="60" cy="80" r="9" fill="#bd3029" stroke="#22221f" strokeWidth="2"/><circle cx="60" cy="80" r="3" fill="#f1f0e9"/><path d="M55 88q5 8 10 0" fill="none" stroke="#22221f" strokeWidth="2.5"/></>}
+  {stage === 1 && <><path d="M30 31Q34 8 60 8T90 31Z" fill="#bd3029" stroke="#22221f" strokeWidth="4"/><path d="M25 32h70" stroke="#22221f" strokeWidth="5" strokeLinecap="round"/><circle cx="60" cy="18" r="3" fill="#f1f0e9"/></>}
+  {stage === 3 && <><rect x="29" y="88" width="62" height="28" rx="3" fill="#22221f"/><rect x="33" y="92" width="54" height="20" fill="#f1f0e9"/><path d="M60 108V96m-5 5 5 3 5-3m-8-4 3 2 4-2" stroke="#bd3029" strokeWidth="2.5" fill="none"/><path d="M25 116h70" stroke="#22221f" strokeWidth="4"/></>}
  </svg>;
 }
 
