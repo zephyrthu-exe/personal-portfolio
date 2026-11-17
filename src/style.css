@@ -31,3 +31,5 @@
 /* A single progress value controls both the runner and filled blocks. */
 .loading-runner{animation:none}.loading-block{animation:none;opacity:0}.loading-block.is-filled{opacity:1}
 .contact-footer .footer-main{display:flex;flex-direction:column;align-items:center;text-align:center;gap:28px}.contact-footer .social-icons{justify-content:center}
+/* Align the heading vertically with the social links on wider screens. */
+.contact-footer .footer-main{display:grid;grid-template-columns:1fr 1fr;align-items:center;text-align:left;gap:60px}.contact-footer .social-icons{justify-content:flex-start}@media(max-width:760px){.contact-footer .footer-main{grid-template-columns:1fr;gap:30px}}
