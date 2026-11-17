@@ -15,18 +15,8 @@ const milestones = [
 ];
 
 function Koala({ stage }: { stage: number }) {
- return <svg viewBox="0 0 24 24" aria-hidden="true" shapeRendering="crispEdges">
-  {/* Original pixel portraits, built with just black and white. */}
-  <path fill="#171714" d="M5 17h14v1h2v6H3v-6h2z"/><path fill="#fff" d="M6 18h12v1h2v5H4v-5h2z"/>
-  {stage === 1 && <path fill="#171714" d="M3 18h2v6H2v-5h1zm16 0h2v1h1v5h-3z"/>}
-  <path fill="#171714" d="M2 5h1V4h4v1h2V4h6v1h2V4h4v1h1v1h1v5h-1v1h-2v3h-1v1h-2v1H7v-1H5v-1H4v-3H2v-1H1V6h1z"/>
-  <path fill="#fff" d="M3 6h1V5h3v1h2V5h6v1h2V5h3v1h1v5h-2v3h-1v1h-2v1H8v-1H6v-1H5v-3H3z"/>
-  <path fill="#171714" d="M4 7h2v3H4zm14 0h2v3h-2zM8 9h1v2H8zm7 0h1v2h-1zm-4 2h2v1h1v3h-1v1h-2v-1h-1v-3h1z"/>
-  {stage === 0 && <><path fill="#171714" d="M10 16h4v1h1v2h-1v1h-4v-1H9v-2h1z"/><path fill="#fff" d="M11 17h2v2h-2z"/></>}
-  {stage === 1 && <><path fill="#171714" d="M7 3h1V2h8v1h1v2H7zM6 5h12v1H6z"/><path fill="#fff" d="M11 3h2v1h-2z"/><path fill="#171714" d="M6 18h2v5H6zm10 0h2v5h-2z"/></>}
-  {stage === 2 && <><path fill="#171714" d="M7 8h3v1H7zm7 0h3v1h-3zM8 18h2v1h1v1h2v-1h1v-1h2v1h-1v1h-1v1h-1v3h-2v-3h-1v-1H9v-1H8z"/><path fill="#171714" d="M3 21h5v3H3z"/><path fill="#fff" d="M4 22h3v1H4z"/></>}
-  {stage === 3 && <><path fill="#171714" d="M5 19h14v5H5z"/><path fill="#fff" d="M6 20h12v3H6z"/><path fill="#171714" d="M11 20h1v3h-1zm-2 1h2v1H9zm3-1h2v1h-2z"/></>}
- </svg>;
+ const crops = ['90 105 340 370', '590 95 340 385', '75 715 370 410', '590 715 370 410'];
+ return <svg viewBox={crops[stage]} aria-hidden="true" preserveAspectRatio="xMidYMid meet"><image href={`${import.meta.env.BASE_URL}koala-reference.png`} width="1031" height="1280" /></svg>;
 }
 
 function App() {
