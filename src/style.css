@@ -35,3 +35,4 @@
 .contact-footer .footer-main{display:grid;grid-template-columns:1fr 1fr;align-items:center;text-align:left;gap:60px}.contact-footer .social-icons{justify-content:flex-start}@media(max-width:760px){.contact-footer .footer-main{grid-template-columns:1fr;gap:30px}}
 /* Center the icon row on the heading, excluding the section label. */
 .contact-footer .footer-intro{position:relative}.contact-footer .footer-intro .section-number{position:absolute;bottom:100%;left:0;margin:0 0 26px}.contact-footer .footer-main{padding-top:45px}
+.timeline-portrait svg{width:82%;height:82%;margin:9% auto}
