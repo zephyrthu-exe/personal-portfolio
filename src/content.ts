@@ -1,7 +1,7 @@
 export type Skill = {label:string; icon:string};
 export type Certificate = {title:string; type:string; date:string; description:string; url:string; expirationDate?:string};
 export type Education = {title:string; years:string; stage:number; schoolName?:string; achievements?:string};
-export type Portfolio = {intro:string; skills:Skill[]; certificates:Certificate[]; education:Education[]; contacts:{telegram:string;facebook:string;x:string;whatsapp:string;linkedin:string;github:string}};
+export type Portfolio = {fontSizes?:{headings:number; text:number}; intro:string; skills:Skill[]; certificates:Certificate[]; education:Education[]; contacts:{telegram:string;facebook:string;x:string;whatsapp:string;linkedin:string;github:string}};
 export const defaults:Portfolio = {
  intro:'I’m Alex, a curious student who loves building thoughtful things, learning new skills, and finding wonder in the little details.',
  skills:[{label:'HTML & CSS',icon:'htmlcss'},{label:'JavaScript',icon:'javascript'},{label:'Python',icon:'python'}],
