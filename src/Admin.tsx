@@ -5,8 +5,9 @@ import { auth, provider, db, adminEmail } from './firebase';
 import { defaults, type Portfolio, type Skill, type Certificate, type Education } from './content';
 import './admin.css';
 import { skillIconGroups, SkillIcon } from './skill-icons';
+import { isSafeExternalUrl } from './urls';
 
-const validURL = (value: string) => { if (!value) return true; try { return ['http:', 'https:'].includes(new URL(value).protocol); } catch { return false; } };
+const validURL = (value: string) => !value || isSafeExternalUrl(value);
 export default function Admin() {
  const [user,setUser] = useState<User|null>(null); const [authReady,setAuthReady] = useState(false); const [data,setData] = useState<Portfolio|null>(null); const [message,setMessage] = useState(''); const [busy,setBusy] = useState(false);
  useEffect(() => onAuthStateChanged(auth, u => {setUser(u);setAuthReady(true);setData(null);setMessage('');}), []);
