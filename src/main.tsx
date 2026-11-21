@@ -29,6 +29,27 @@ const certificates = [
 function App() {
  const [selectedCertificate, setSelectedCertificate] = useState<number | null>(null);
  const certificateDialog = useRef<HTMLDialogElement>(null);
+ useEffect(() => {
+  const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const targets = Array.from(document.querySelectorAll<HTMLElement>('.hero-copy, .section-head, .timeline-item, .domino-grid, .skills-grid, .footer-main, .footer-bottom'));
+  let frame = 0;
+  const update = () => {
+   frame = 0;
+   targets.forEach(element => {
+    if (motion.matches) { element.style.removeProperty('--reveal-opacity'); element.style.removeProperty('--reveal-offset'); return; }
+    const rect = element.getBoundingClientRect();
+    const fadeDistance = Math.min(180, window.innerHeight * .22);
+    const entering = Math.min(1, Math.max(0, (window.innerHeight - rect.top) / fadeDistance));
+    const leaving = Math.min(1, Math.max(0, rect.bottom / fadeDistance));
+    const visibility = Math.min(entering, leaving);
+    element.style.setProperty('--reveal-opacity', String(Math.max(.08, visibility)));
+    element.style.setProperty('--reveal-offset', `${(1 - visibility) * 16}px`);
+   });
+  };
+  const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
+  update(); window.addEventListener('scroll', schedule, { passive: true }); window.addEventListener('resize', schedule); motion.addEventListener('change', schedule);
+  return () => { window.removeEventListener('scroll', schedule); window.removeEventListener('resize', schedule); motion.removeEventListener('change', schedule); cancelAnimationFrame(frame); };
+ }, []);
  const [loading, setLoading] = useState(true);
  const [progress, setProgress] = useState(0);
  useEffect(() => { const start = performance.now(); let frame = 0; const tick = (now: number) => { const next = Math.min(18, Math.floor((now - start) / 100)); setProgress(next); if (next < 18) frame = requestAnimationFrame(tick); }; frame = requestAnimationFrame(tick); return () => cancelAnimationFrame(frame); }, []);
