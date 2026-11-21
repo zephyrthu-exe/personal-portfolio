@@ -1,5 +1,5 @@
 export type Skill = {label:string; icon:string};
-export type Certificate = {title:string; type:string; date:string; description:string; url:string};
+export type Certificate = {title:string; type:string; date:string; description:string; url:string; expirationDate?:string};
 export type Education = {title:string; years:string; stage:number};
 export type Portfolio = {intro:string; skills:Skill[]; certificates:Certificate[]; education:Education[]; contacts:{telegram:string;facebook:string;x:string;whatsapp:string;linkedin:string;github:string}};
 export const defaults:Portfolio = {
