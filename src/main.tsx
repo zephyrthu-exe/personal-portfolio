@@ -2,12 +2,13 @@ import { useEffect, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import '@fontsource/press-start-2p';
 import '@fontsource/vt323';
-import { siTelegram, siFacebook, siX, siWhatsapp, siGithub, siHtml5, siCss, siJavascript, siPython } from 'simple-icons';
+import { siTelegram, siFacebook, siX, siWhatsapp, siGithub } from 'simple-icons';
 import './style.css';
 import { doc, onSnapshot } from 'firebase/firestore';
 import { db } from './firebase';
 import { defaults, type Portfolio } from './content';
 import Admin from './Admin';
+import { SkillIcon } from './skill-icons';
 
 const linkedinIcon = { title: 'LinkedIn', path: 'M20.45 2H3.55C2.69 2 2 2.68 2 3.52v16.96c0 .84.69 1.52 1.55 1.52h16.9c.86 0 1.55-.68 1.55-1.52V3.52c0-.84-.69-1.52-1.55-1.52zM8.1 18.75H5.13V9.2H8.1v9.55zM6.61 7.9a1.72 1.72 0 1 1 0-3.44 1.72 1.72 0 0 1 0 3.44zm12.14 10.85h-2.96V14.1c0-1.11-.02-2.54-1.55-2.54-1.55 0-1.78 1.21-1.78 2.46v4.73H9.5V9.2h2.84v1.3h.04c.4-.75 1.36-1.55 2.8-1.55 2.99 0 3.57 1.97 3.57 4.53v5.27z' };
 
@@ -21,7 +22,7 @@ function App() {
  useEffect(() => onSnapshot(doc(db, 'portfolio', 'public'), snapshot => { if (snapshot.exists()) setContent(snapshot.data() as Portfolio); else setContent(defaults); }, error => console.error('Portfolio content could not be loaded:', error.code)), []);
  const certificates = [...content.certificates].sort((a,b) => a.date.localeCompare(b.date) || a.title.localeCompare(b.title));
  const milestones = content.education;
- const iconMap = { htmlcss:[siHtml5,siCss], html:[siHtml5], css:[siCss], javascript:[siJavascript], python:[siPython], generic:[] } as Record<string, typeof siHtml5[]>;
+
  const [dark, setDark] = useState(() => { try { return localStorage.getItem('portfolio-theme') === 'dark'; } catch { return false; } });
  useEffect(() => { document.documentElement.dataset.theme = dark ? 'dark' : 'light'; try { localStorage.setItem('portfolio-theme', dark ? 'dark' : 'light'); } catch { /* The theme still works for this visit. */ } }, [dark]);
  const [selectedCertificate, setSelectedCertificate] = useState<number | null>(null);
@@ -59,7 +60,7 @@ function App() {
  <main id="top"><section className="hero wrap" id="about"><div className="hero-copy"><h1>Readme<span className="red">.md</span></h1><p className="intro">{content.intro}</p></div>
 </section>
 
- <section className="section wrap skills" id="skills"><div className="section-head"><div><h2>SKILLS<span>.</span></h2></div></div><div className="skills-grid"><article className="skills-group"><h3>Development</h3><ul className="skill-list">{content.skills.map(skill => <li key={skill.label}><span className="skill-icons" aria-hidden="true">{(iconMap[skill.icon] || []).length === 0 && <span>✳</span>}{(iconMap[skill.icon] || []).map(icon => <svg key={icon.title} viewBox="0 0 24 24"><path d={icon.path}/></svg>)}</span><span>{skill.label}</span></li>)}</ul></article></div></section>
+ <section className="section wrap skills" id="skills"><div className="section-head"><div><h2>SKILLS<span>.</span></h2></div></div><div className="skills-grid"><article className="skills-group"><h3>Development</h3><ul className="skill-list">{content.skills.map(skill => <li key={skill.label}><span className="skill-icons" aria-hidden="true"><SkillIcon name={skill.icon}/></span><span>{skill.label}</span></li>)}</ul></article></div></section>
  <section className="section achievements" id="achievements"><div className="wrap"><div className="section-head"><div><h2>CERTIFICATES<br/><span>&amp; PARTICIPATIONS.</span></h2></div></div><div className="domino-grid">{certificates.map((item, index) => <button type="button" className="domino" key={item.title} onClick={() => { setSelectedCertificate(index); certificateDialog.current?.showModal(); }} aria-label={`${index + 1}. ${item.title}, ${item.date}: view details`}><span className="domino-top" aria-hidden="true"><span className="domino-dots">{Array.from({length:index+1}, (_, dot) => <span key={dot}/>)}</span></span><span className="domino-bottom"><span className="domino-date">{item.date} / {item.type}</span><span className="domino-title">{item.title}</span><span className="domino-action">VIEW DETAILS ↗</span></span></button>)}</div><dialog ref={certificateDialog} className="certificate-dialog" aria-labelledby="certificate-title" onClick={event => { if (event.target === event.currentTarget) event.currentTarget.close(); }}><div className="window-titlebar"><span>MILESTONE.EXE</span><button type="button" aria-label="Close details" onClick={() => certificateDialog.current?.close()}>×</button></div>{selectedCertificate !== null && certificates[selectedCertificate] && <div className="window-body"><p className="window-meta">{certificates[selectedCertificate].date} / {certificates[selectedCertificate].type}</p><h3 id="certificate-title">{certificates[selectedCertificate].title}</h3><p>{certificates[selectedCertificate].description}</p>{certificates[selectedCertificate].url && <a href={certificates[selectedCertificate].url} target="_blank" rel="noreferrer">VIEW CERTIFICATE ↗</a>}<button className="window-close" type="button" onClick={() => certificateDialog.current?.close()}>CLOSE</button></div>}</dialog></div></section>
 
  <section className="section wrap" id="journey"><div className="section-head"><div><h2>HOW I <span>EVOLVE UwU</span></h2></div></div><ol className="timeline" aria-label="Education timeline">{milestones.map((item, index) => <li className="timeline-item" key={`${item.title}-${index}`}><div className="timeline-portrait"><Koala stage={item.stage}/></div><div className="timeline-content"><span className="timeline-years">{item.years}</span><h3>{item.title}</h3></div></li>)}</ol></section>
