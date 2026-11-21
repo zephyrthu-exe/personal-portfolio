@@ -46,3 +46,4 @@
 .header{justify-content:space-between}.hero{min-height:0;padding-top:105px;padding-bottom:55px}.skills{padding-top:55px}@media(max-width:760px){.header-link{display:inline-flex;align-items:center;gap:5px;font-size:7px}.header{gap:12px}.hero{min-height:0;padding-top:70px;padding-bottom:40px}.skills{padding-top:40px}}@media(max-width:400px){.header nav{width:auto;flex:1}.header-link{font-size:6px}}
 /* Keep vertical spacing consistent throughout the portfolio. */
 .section{padding-top:65px;padding-bottom:65px}.contact-footer{padding-top:65px}@media(max-width:760px){.section{padding-top:45px;padding-bottom:45px}.contact-footer{padding-top:45px}}
+.contact-footer .footer-main,.contact-footer .footer-bottom{opacity:1;translate:none}

@@ -31,7 +31,7 @@ function App() {
  const certificateDialog = useRef<HTMLDialogElement>(null);
  useEffect(() => {
   const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const targets = Array.from(document.querySelectorAll<HTMLElement>('.hero-copy, .section-head, .timeline-item, .domino-grid, .skills-grid, .footer-main, .footer-bottom'));
+  const targets = Array.from(document.querySelectorAll<HTMLElement>('.hero-copy, .section-head, .timeline-item, .domino-grid, .skills-grid'));
   let frame = 0;
   const update = () => {
    frame = 0;
