@@ -15,8 +15,8 @@ const milestones = [
 ];
 
 function Koala({ stage }: { stage: number }) {
- const crops = ['90 105 340 370', '590 95 340 385', '75 715 370 410', '590 715 370 410'];
- return <svg viewBox={crops[stage]} aria-hidden="true" preserveAspectRatio="xMidYMid meet"><image href={`${import.meta.env.BASE_URL}koala-reference.png`} width="1031" height="1280" /></svg>;
+ const crops = ['50 75 300 320', '430 70 315 330', '35 560 325 340', '435 560 330 370'];
+ return <svg viewBox={crops[stage]} aria-hidden="true" preserveAspectRatio="xMidYMid meet"><image href={`${import.meta.env.BASE_URL}koala-portraits.png`} width="765" height="1024" /></svg>;
 }
 
 function App() {
